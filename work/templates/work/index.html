@@ -1,0 +1,28 @@
+<h1>New Work Item</h1>
+
+<form action="/new-work" method="post">
+    {% csrf_token %}
+    <label for="sleep_seconds">Seconds: </label>
+    <input id="sleep_seconds" type="numeric" name="sleep_seconds" value="10">
+    <input type="submit" value="OK">
+
+    <label for="n_copies">Number of copies of this task to submit: </label>
+    <input id="n_copies" type="numeric" name="n_copies" value="1">
+
+</form>
+
+<h1>Existing Work Items with Status </h1>
+
+<table>
+  <tr>
+    <th>Sleep Time</th>
+    <th>Status</th>
+      <th>Task ID</th>
+  </tr>
+        {% for item in work_items %}
+        <tr><td>{{ item.sleep_seconds }}</td>
+        <td>{{item.status}}</td>
+    <td>{{item.task_id}}</td>
+    </tr>
+    {% endfor %}
+</table>
