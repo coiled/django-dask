@@ -26,10 +26,13 @@ cluster = coiled.Cluster(
 Then to start the app:
 
 ```
-
+python manage.py runserver
+```
 
 ## Some addition notes
 
 * We've cached the Dask client instead of making a new client each time we need one. The cached client is also responsible for driving the autoscaling behavior of the Dask cluster.
 * In this example, we're checking on task status in the path of a web request. It might be better to do that somewhere else and store the state, so individual web requests don't need this.
 * As written, the futures stay on the Dask cluster in memory forever. If the results are tiny, that might not be a big deal, but it's probably necessary to clear them out eventually. One way to handle that would be by shutting down the cluster every once in awhile and making a new one.
+
+<img width="722" alt="Screen Shot 2023-09-21 at 4 29 51 PM" src="https://github.com/coiled/django-dask/assets/1222726/b47af46d-4c08-46ba-a790-606a2dd8b9c3">
