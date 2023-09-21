@@ -22,8 +22,8 @@ def get_client(name):
             yield cached_client
         else:
             logging.warning("making a new client")
-            cluster = coiled.Cluster(name=name, shutdown_on_close=False, n_workers=0)
-            cluster.adapt(minimum=0, maximum=10, target_duration=60)
+            cluster = coiled.Cluster(name=name, shutdown_on_close=False, n_workers=1)
+            cluster.adapt(minimum=1, maximum=10, target_duration=60)
             client = cluster.get_client()
             cached_client = client
             yield client
